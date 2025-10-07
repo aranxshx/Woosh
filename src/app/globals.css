@@ -1,26 +1,78 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
+  --background: 9 9 11;
+  --foreground: 244 244 245;
+  --muted: 39 39 42;
+  --muted-foreground: 161 161 170;
+  --accent: 63 63 70;
+  --accent-foreground: 244 244 245;
+  --primary: 82 82 91;
+  --primary-foreground: 250 250 250;
+  --ring: 161 161 170;
+  --border: 54 54 56;
+  --radius: 18px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  font-family: var(--font-geist-sans);
+  background: radial-gradient(circle at 20% 20%, rgba(63, 63, 70, 0.35), transparent 60%),
+    radial-gradient(circle at 80% 0%, rgba(39, 39, 42, 0.45), transparent 55%),
+    rgb(var(--background));
+  color: rgb(var(--foreground));
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  accent-color: rgb(var(--primary));
+}
+
+::selection {
+  background-color: rgba(82, 82, 91, 0.65);
+  color: rgb(var(--primary-foreground));
+}
+
+.glass-panel {
+  background: linear-gradient(140deg, rgba(39, 39, 42, 0.8), rgba(24, 24, 27, 0.6));
+  border: 1px solid rgba(82, 82, 91, 0.25);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(28px);
+  border-radius: var(--radius);
+}
+
+.button-reset {
+  appearance: none;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+.focus-ring {
+  outline: none;
+  box-shadow: 0 0 0 1px rgba(161, 161, 170, 0.2), 0 0 0 6px rgba(82, 82, 91, 0.35);
+}
+
+.scroll-thin {
+  scrollbar-width: thin;
+}
+
+.scroll-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scroll-thin::-webkit-scrollbar-thumb {
+  background-color: rgba(82, 82, 91, 0.6);
+  border-radius: 9999px;
+}
+
+.scroll-thin::-webkit-scrollbar-track {
+  background-color: transparent;
 }
