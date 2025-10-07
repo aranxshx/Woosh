@@ -31,9 +31,18 @@ export default function SignInPage() {
         });
         if (signInError) throw signInError;
       } else {
+        // Ensure Supabase confirmation links redirect back to the correct origin
+        // Works on localhost for dev and on Vercel in production
+        const origin = typeof window !== "undefined" && window.location?.origin
+          ? window.location.origin
+          : (process.env.NEXT_PUBLIC_URL ?? "");
+
         const { error: signUpError } = await supabase.auth.signUp({
           email,
           password,
+          options: {
+            emailRedirectTo: `${origin}/`,
+          },
         });
         if (signUpError) throw signUpError;
       }
